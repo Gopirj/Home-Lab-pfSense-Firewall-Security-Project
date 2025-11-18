@@ -1,8 +1,7 @@
 # Home-Lab-pfSense-Firewall-Security-Project
 
-==========================================
-1. OBJECTIVES
-==========================================
+
+### 1.OBJECTIVE
 
 ● Stand up a pfSense firewall in VirtualBox with separate WAN (bridged)  
   and LAN (internal) segments.  
@@ -17,7 +16,7 @@
 
 
 | Device / Segment        | Adapter        | IF     | IP / Subnet                | Role                         |
-|-------------------------|----------------|--------|-----------------------------|------------------------------|
+|-------------------------|----------------|--------|----------------------------|------------------------------|
 | Home LAN                | Host Network   | —      | 192.168.0.0/24             | Internet source              |
 | pfSense WAN             | Bridged        | vtnet0 | 192.168.0.254/24 (GW .1)   | WAN firewall interface       |
 | Kali Linux (Attacker)   | Bridged        | eth0   | 192.168.0.200/24           | External attacker            |
