@@ -1,7 +1,7 @@
 # Home-Lab-pfSense-Firewall-Security-Project
 
 
-### 1.OBJECTIVE
+### 1. OBJECTIVES
 
 ● Stand up a pfSense firewall in VirtualBox with separate WAN (bridged)  
   and LAN (internal) segments.  
@@ -10,10 +10,8 @@
 ● Demonstrate DoS traffic using **hping3** and analyze it using **Wireshark**.  
 ● Mitigate the attack using pfSense firewall rules and verify via logs.
 
-===========================================================
-2. TOPOLOGY & IP PLAN
-===========================================================
 
+### 2. TOPOLOGY & IP PLAN
 
 | Device / Segment        | Adapter        | IF     | IP / Subnet                | Role                         |
 |-------------------------|----------------|--------|----------------------------|------------------------------|
@@ -25,9 +23,7 @@
 | Ubuntu (Victim)         | Internal Net   | eth0   | 192.168.1.100/24           | Victim machine               |
 
 
-===========================================================
-3. PREREQUISITES
-===========================================================
+### 3. PREREQUISITES
 
 ● **VirtualBox ≥ 7.x installed** (Windows / macOS / Linux)  
   - Needed to run pfSense, Kali, Ubuntu  
@@ -52,9 +48,7 @@
   - Allow guest OS to access physical network  
   - Apply VirtualBox networking changes  
 
-===========================================================
-4. LAB ENVIRONMENT SETUP
-===========================================================
+### 4. LAB ENVIRONMENT SETUP
 
 This section covers creating and configuring:
 
@@ -62,9 +56,7 @@ This section covers creating and configuring:
 2. Kali Linux (Attacker)  
 3. Ubuntu Desktop (Victim)  
 
-===========================================================
-4.1 CREATE pfSense VM
-===========================================================
+### 4.1 CREATE pfSense VM
 
 ● OS: FreeBSD 64-bit  
 ● CPU / RAM: 2 vCPU, 2 GB RAM  
@@ -83,9 +75,7 @@ This section covers creating and configuring:
 6. Storage → Attach pfSense ISO  
 7. Start installation  
 
-===========================================================
-4.2 CREATE KALI VM (Attacker)
-===========================================================
+### 4.2 CREATE KALI VM (Attacker)
 
 ● OS: Debian 64-bit  
 ● CPU/RAM: 2 vCPU, 2 GB  
@@ -101,9 +91,7 @@ Network:
 4. Install Kali  
 5. Remove ISO  
 
-===========================================================
-4.3 CREATE UBUNTU VM (Victim)
-===========================================================
+### 4.3 CREATE UBUNTU VM (Victim)
 
 ● OS: Ubuntu 64-bit  
 ● CPU/RAM: 2 vCPU, 2 GB  
@@ -119,9 +107,7 @@ Network:
 4. Install OS  
 5. Remove ISO  
 
-===========================================================
-5. pfSense SETUP
-===========================================================
+### 5. pfSense SETUP
 
 ● Install pfSense with default settings.  
 ● Assign interfaces:
@@ -133,9 +119,7 @@ vtnet1 = LAN
 
 ● WAN uses **DHCP**, pfSense gets IP from home router.
 
-===========================================================
-5.1 Access pfSense from WAN
-===========================================================
+### 5.1 Access pfSense from WAN
 
 Disable pfSense firewall temporarily:
 
@@ -165,9 +149,7 @@ Action: Pass
 Source: Home Network
 ```
 
-===========================================================
-5.2 Configure LAN DHCP
-===========================================================
+### 5.2 Configure LAN DHCP
 
 Navigate:  
 **Services ▸ DHCP Server ▸ LAN**
@@ -181,9 +163,7 @@ DNS: 192.168.0.1
 
 Apply changes.
 
-===========================================================
-5.3 Allow Kali Access to Internal LAN (Temporary)
-===========================================================
+### 5.3 Allow Kali Access to Internal LAN (Temporary)
 
 Add WAN rule in pfSense:
 
@@ -197,9 +177,7 @@ Description: Allow Kali access
 
 This is required for the DoS demonstration.
 
-===========================================================
-6. Kali Linux Setup (Attacker)
-===========================================================
+### 6. Kali Linux Setup (Attacker)
 
 Check IP address:
 
@@ -221,9 +199,7 @@ sudo ip route add 192.168.1.0/24 via <PFSENSE_WAN_IP>
 **What it does:**  
 • Tells Kali to forward packets for 192.168.1.x via pfSense WAN.
 
-===========================================================
-7. Ubuntu Setup (Victim)
-===========================================================
+### 7. Ubuntu Setup (Victim)
 
 Ubuntu receives:
 - IP: **192.168.1.100**  
@@ -245,9 +221,7 @@ ping -c3 google.com
 **What it does:**  
 • Confirms DNS + internet connectivity.
 
-===========================================================
-8. Launching the DoS Attack (hping3)
-===========================================================
+### 8. Launching the DoS Attack (hping3)
 
 Install Wireshark:
 
@@ -276,9 +250,8 @@ sudo hping3 --flood -S -p 80 192.168.1.100
 **What they do:**  
 • Send rapid ICMP or SYN packets to overwhelm Ubuntu.
 
-===========================================================
-9. Block the Attack in pfSense
-===========================================================
+### 9. Block the Attack in pfSense
+
 
 Create firewall rule:
 
@@ -295,9 +268,7 @@ Description: Block Kali DoS
 • DoS traffic stops immediately  
 • Logs show blocked packets  
 
-===========================================================
-10. Wrap-Up & Next Steps
-===========================================================
+### 10. Wrap-Up & Next Steps
 
 ● Built a pfSense-based isolated security lab  
 ● Performed DoS attack simulations  
