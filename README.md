@@ -1,8 +1,8 @@
 # Home-Lab-pfSense-Firewall-Security-Project
 
-
+===========================================================
 1. OBJECTIVES
-
+===========================================================
 
 ● Stand up a pfSense firewall in VirtualBox with separate WAN (bridged)  
   and LAN (internal) segments.  
