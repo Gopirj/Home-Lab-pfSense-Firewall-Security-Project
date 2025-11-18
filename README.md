@@ -1,6 +1,6 @@
 # Home-Lab-pfSense-Firewall-Security-Project
 
-===========================================================
+
 1. OBJECTIVES
 
 
