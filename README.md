@@ -15,14 +15,16 @@
 2. TOPOLOGY & IP PLAN
 ===========================================================
 
-| Device / Segment          | VirtualBox Adapter   | Interface | IP / Subnet                         | Role                                      |
-|---------------------------|----------------------|-----------|-------------------------------------|-------------------------------------------|
-| Home LAN (physical)       | Host Network         | —         | 192.168.0.0/24                      | Internet gateway for the lab              |
-| pfSense WAN               | Bridged              | vtnet0    | 192.168.0.254/24 → GW 192.168.0.1   | Firewall toward home LAN                  |
-| Kali Linux (Attacker)     | Bridged              | eth0      | 192.168.0.200/24                    | External attacker machine                  |
-| Lab LAN (LabNet)          | Internal Network     | —         | 192.168.1.0/24                      | Isolated internal LAN                      |
-| pfSense LAN (LabNet)      | Internal LabNet      | vtnet1    | 192.168.1.1/24 (DHCP 100–199)       | Gateway, DHCP, DNS                         |
-| Ubuntu Desktop (Victim)   | Internal LabNet      | eth0      | 192.168.1.100/24                    | Victim machine                             |
+
+| Device / Segment        | Adapter        | IF     | IP / Subnet                | Role                         |
+|-------------------------|----------------|--------|-----------------------------|------------------------------|
+| Home LAN                | Host Network   | —      | 192.168.0.0/24             | Internet source              |
+| pfSense WAN             | Bridged        | vtnet0 | 192.168.0.254/24 (GW .1)   | WAN firewall interface       |
+| Kali Linux (Attacker)   | Bridged        | eth0   | 192.168.0.200/24           | External attacker            |
+| Lab LAN (Internal)      | Internal Net   | —      | 192.168.1.0/24             | Internal isolated LAN        |
+| pfSense LAN             | Internal Net   | vtnet1 | 192.168.1.1/24             | LAN Gateway / DHCP / DNS     |
+| Ubuntu (Victim)         | Internal Net   | eth0   | 192.168.1.100/24           | Victim machine               |
+
 
 ===========================================================
 3. PREREQUISITES
