@@ -26,13 +26,14 @@
 ### 3. PREREQUISITES
 
 ● **VirtualBox ≥ 7.x installed** (Windows / macOS / Linux)  
+    Visit:https://www.virtualbox.org/wiki/Downloads
   - Needed to run pfSense, Kali, Ubuntu  
   - Supports bridged & internal network modes
 
 ● **Required ISO images** (latest versions recommended):
-  - **pfSense-CE-2.7.x-amd64.iso** → Firewall / Router  
-  - **kali-linux-current-amd64.iso** → Attacker system  
-  - **ubuntu-22.04-desktop-amd64.iso** → Victim machine  
+  - **pfSense-CE-2.7.x-amd64.iso** → Firewall / Router   Visit:https://www.pfsense.org/download/
+  - **kali-linux-current-amd64.iso** → Attacker system   Visit:https://www.kali.org/get-kali/#kali-installer-images
+  - **ubuntu-22.04-desktop-amd64.iso** → Victim machine  Visit:https://ubuntu.com/download/desktop
 
 ● **Minimum Host Resources**
   - **8 GB RAM**  
